@@ -2,7 +2,7 @@ import utils
 
 import std/strutils, std/sequtils, std/strformat
 
-proc part1(lines: seq[seq[string]]): int =
+proc part1*(lines: seq[seq[string]]): int =
     var
         depth = 0
         horizontal = 0
@@ -22,7 +22,7 @@ proc part1(lines: seq[seq[string]]): int =
 
     return depth * horizontal
 
-proc part2(lines: seq[seq[string]]): int =
+proc part2*(lines: seq[seq[string]]): int =
     var
         aim = 0
         depth = 0
