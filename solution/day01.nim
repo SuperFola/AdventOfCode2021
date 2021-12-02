@@ -3,9 +3,7 @@ import utils
 import strutils, sequtils, math
 import std/strformat
 
-let lines = parseInput("01").map(parseInt)
-
-proc part1(): int =
+proc part1(lines: seq[int]): int =
     var previous = lines[0]
     var countLargerThanPrev = 0
 
@@ -16,7 +14,7 @@ proc part1(): int =
 
     return countLargerThanPrev
 
-proc part2(): int =
+proc part2(lines: seq[int]): int =
     var
         countLargerThanPrev = 0
         previous = -1
@@ -31,5 +29,6 @@ proc part2(): int =
 
     return countLargerThanPrev
 
-echo fmt"Part1: {part1()}"
-echo fmt"Part2: {part2()}"
+let lines = parseInput("01").map(parseInt)
+echo fmt"Part1: {part1(lines)}"
+echo fmt"Part2: {part2(lines)}"
