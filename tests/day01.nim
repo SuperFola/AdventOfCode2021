@@ -5,3 +5,4 @@ import std/strformat
 let lines: seq[int] = []
 
 echo fmt"Part1: {part1(lines)}"
+echo fmt"Part2: {part2(lines)}"
