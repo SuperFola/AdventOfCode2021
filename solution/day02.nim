@@ -2,9 +2,7 @@ import utils
 
 import std/strutils, std/sequtils, std/strformat
 
-let lines = parseInput("02").map(proc(s: string): seq[string] = s.split(" "))
-
-proc part1(): int =
+proc part1(lines: seq[seq[string]]): int =
     var
         depth = 0
         horizontal = 0
@@ -24,7 +22,7 @@ proc part1(): int =
 
     return depth * horizontal
 
-proc part2(): int =
+proc part2(lines: seq[seq[string]]): int =
     var
         aim = 0
         depth = 0
@@ -46,5 +44,6 @@ proc part2(): int =
 
     return depth * horizontal
 
-echo fmt"Part1: {part1()}"
-echo fmt"Part2: {part2()}"
+let lines = parseInput("02").map(proc(s: string): seq[string] = s.split(" "))
+echo fmt"Part1: {part1(lines)}"
+echo fmt"Part2: {part2(lines)}"
