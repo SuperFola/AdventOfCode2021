@@ -1,8 +1,13 @@
 import "../solution/day01"
 
-import std/strformat
+import unittest
 
-let lines: seq[int] = []
+suite "AOC day 01":
+    setup:
+        let lines: seq[int] = @[199, 200, 208, 210, 200, 207, 240, 269, 260, 263]
 
-echo fmt"Part1: {part1(lines)}"
-echo fmt"Part2: {part2(lines)}"
+    test "Part 1":
+        check part1(lines) == 7
+
+    test "Part 2":
+        check part2(lines) == 5

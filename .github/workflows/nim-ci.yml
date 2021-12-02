@@ -1,0 +1,19 @@
+name: Nim CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: Nim
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: alaviss/setup-nim@0.1.1
+        with:
+          path: 'nim'
+          version: 'version-1-6'
+
+      - run: for f in tests/*.nim; do nim c -r $f ; done

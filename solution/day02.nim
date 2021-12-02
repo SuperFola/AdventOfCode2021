@@ -44,6 +44,7 @@ proc part2*(lines: seq[seq[string]]): int =
 
     return depth * horizontal
 
-let lines = parseInput("02").map(proc(s: string): seq[string] = s.split(" "))
-echo fmt"Part1: {part1(lines)}"
-echo fmt"Part2: {part2(lines)}"
+when isMainModule:
+    let lines = parseInput("02").map(proc(s: string): seq[string] = s.split(" "))
+    echo fmt"Part1: {part1(lines)}"
+    echo fmt"Part2: {part2(lines)}"

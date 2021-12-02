@@ -29,6 +29,7 @@ proc part2*(lines: seq[int]): int =
 
     return countLargerThanPrev
 
-let lines = parseInput("01").map(parseInt)
-echo fmt"Part1: {part1(lines)}"
-echo fmt"Part2: {part2(lines)}"
+when isMainModule:
+    let lines = parseInput("01").map(parseInt)
+    echo fmt"Part1: {part1(lines)}"
+    echo fmt"Part2: {part2(lines)}"
