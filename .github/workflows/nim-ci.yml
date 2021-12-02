@@ -16,4 +16,4 @@ jobs:
           path: 'nim'
           version: 'version-1-6'
 
-      - run: for f in tests/*.nim; do nim c -r $f ; done
+      - run: nimble test
