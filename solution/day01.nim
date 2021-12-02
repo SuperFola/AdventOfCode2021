@@ -3,7 +3,7 @@ import utils
 import strutils, sequtils, math
 import std/strformat
 
-proc part1(lines: seq[int]): int =
+proc part1*(lines: seq[int]): int =
     var previous = lines[0]
     var countLargerThanPrev = 0
 
@@ -14,7 +14,7 @@ proc part1(lines: seq[int]): int =
 
     return countLargerThanPrev
 
-proc part2(lines: seq[int]): int =
+proc part2*(lines: seq[int]): int =
     var
         countLargerThanPrev = 0
         previous = -1
