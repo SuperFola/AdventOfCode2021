@@ -12,7 +12,7 @@ suite "AOC day 02":
         ]
 
     test "Part 1":
-        check day02.part1(lines) == 150
+        check part1(lines) == 150
 
     test "Part 2":
-        check day02.part2(lines) == 900
+        check part2(lines) == 900

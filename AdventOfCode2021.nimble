@@ -5,7 +5,11 @@ author        = "Alexandre Plateau"
 description   = "A new awesome nimble package"
 license       = "MIT"
 srcDir        = "src"
-bin           = @["day01", "day02"]
+bin           = @[
+  "day01",
+  "day02",
+  "day03"
+]
 
 
 # Dependencies
