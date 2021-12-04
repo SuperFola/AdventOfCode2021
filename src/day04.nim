@@ -40,16 +40,10 @@ proc isWinning(board: seq[int]): bool =
     if board.len() == 5:
         return board.count(-1) == 5
 
-    return isWinning(board[0 ..< 5]) or
-        isWinning(board[5 ..< 10]) or
-        isWinning(board[10 ..< 15]) or
-        isWinning(board[15 ..< 20]) or
-        isWinning(board[20 ..< 25]) or
-        isWinning(board.column(0)) or
-        isWinning(board.column(1)) or
-        isWinning(board.column(2)) or
-        isWinning(board.column(3)) or
-        isWinning(board.column(4))
+    for i in countup(0, 20, 5):
+        if isWinning(board[i ..< (i + 5)]) or isWinning(board.column(i div 5)):
+            return true
+    return false
 
 proc part1*(lines: seq[string]): int =
     var
