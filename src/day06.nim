@@ -1,36 +1,34 @@
 import utils
 
-import std/[strutils, sequtils, strformat, sugar]
+import std/[strutils, sequtils, strformat, sugar, tables]
 
 type Fish = object
     daysUntilSpawn: int
     currentDays: int
     isNew: bool
 
+proc evolve(lines: seq[string], until: int): int =
+    var fishes = initTable[int, int]()
+    for daysToLive in lines.join("").split(",").map(parseInt):
+        fishes[daysToLive] = fishes.getOrDefault(daysToLive, 0) + 1
+    for i in 0 .. 8:
+        discard fishes.hasKeyOrPut(i, 0)
+
+    for day in 0 ..< until:
+        var temp: int = fishes[0]
+        for i in 1 .. 8:
+            fishes[i - 1] = fishes[i]
+        # handle 0 here
+        fishes[8] = temp
+        fishes[6] += temp
+
+    return fishes.values().toSeq().foldl(a + b)
+
 proc part1*(lines: seq[string]): int =
-    var fishes = lines.join("").split(",").map(parseInt).map(x => Fish(daysUntilSpawn: x, currentDays: x, isNew: false))
-    var temp: seq[Fish]
-
-    for day in 0 ..< 80:
-        for i, fish in fishes:
-            if fish.currentDays == 0:
-                fishes[i] = Fish(daysUntilSpawn: 6, currentDays: 6, isNew: false)
-                temp.add(
-                    Fish(daysUntilSpawn: 8, currentDays: 8, isNew: true)
-                )
-            else:
-                fishes[i] = Fish(daysUntilSpawn: fish.daysUntilSpawn, currentDays: fish.currentDays - 1, isNew: false)
-
-        for fish in temp:
-            fishes.add(fish)
-        temp.setLen(0)
-
-        # echo "After " & $(day + 1) & " days:\t" & fishes.map(x => $x.currentDays).join(",")
-
-    return fishes.len()
+    return evolve(lines, 80)
 
 proc part2*(lines: seq[string]): int =
-    return 0
+    return evolve(lines, 256)
 
 when isMainModule:
     let lines = parseInput("06")
