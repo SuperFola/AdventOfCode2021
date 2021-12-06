@@ -1,11 +1,6 @@
 import utils
 
-import std/[strutils, sequtils, strformat, sugar, tables]
-
-type Fish = object
-    daysUntilSpawn: int
-    currentDays: int
-    isNew: bool
+import std/[strutils, sequtils, strformat, tables]
 
 proc evolve(lines: seq[string], until: int): int =
     var fishes = initTable[int, int]()
