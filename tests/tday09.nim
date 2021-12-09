@@ -14,4 +14,4 @@ suite "AOC day 09":
         check part1(lines) == 15
 
     test "Part 2":
-        check part2(lines) == 0
+        check part2(lines) == 1134
