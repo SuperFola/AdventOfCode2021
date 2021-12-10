@@ -19,4 +19,4 @@ suite "AOC day 10":
         check part1(lines) == 26397
 
     test "Part 2":
-        check part2(lines) == 0
+        check part2(lines) == 288957
