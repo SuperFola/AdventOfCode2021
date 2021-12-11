@@ -1,6 +1,6 @@
 import utils
 
-import std/[strutils, sequtils, sugar, strformat, tables, algorithm]
+import std/[strutils, sequtils, sugar, strformat]
 
 proc simulate(parsed: var seq[seq[int]]): int =
     var
