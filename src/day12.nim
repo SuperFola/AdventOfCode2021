@@ -2,9 +2,6 @@ import utils
 
 import std/[strutils, sequtils, sugar, strformat, tables]
 
-# big caves: uppercase
-# small caves: lowercase, don't visit them more than once each
-
 type Kind = enum StartCave, EndCave, SmallCave, LargeCave
 
 proc getKind(node: string): Kind =
@@ -17,7 +14,7 @@ proc getKind(node: string): Kind =
     else:
         return LargeCave
 
-proc visit(nodes: Table[string, seq[string]]): int =
+proc visit(nodes: Table[string, seq[string]], part: 1 .. 2): int =
     var
         stack: seq[seq[string]]
         paths = 0
@@ -39,14 +36,20 @@ proc visit(nodes: Table[string, seq[string]]): int =
             of LargeCave:
                 stack.add(curPath & neigh)
             of SmallCave:
-                if neigh notin curPath:
-                    stack.add(curPath & neigh)
+                case part:
+                of 1:
+                    if neigh notin curPath:
+                        stack.add(curPath & neigh)
+                of 2:
+                    let
+                        smallCaves = curPath.filter(x => x.getKind() == SmallCave)
+                        countSmall = smallCaves.toCountTable.values.toSeq
+                    if (neigh notin curPath) or (countSmall.filter(x => x > 1).len() == 0):
+                        stack.add(curPath & neigh)
 
     return paths
 
-proc part1*(lines: seq[string]): int =
-    # find paths that visit small caves at most once
-
+proc createNodes(lines: seq[string]): Table[string, seq[string]] =
     let parsed = lines.filter(x => not x.isEmptyOrWhitespace()).map(x => x.split("-"))
     var nodes = initTable[string, seq[string]]()
 
@@ -58,11 +61,14 @@ proc part1*(lines: seq[string]): int =
         nodes[a] = nodes.getOrDefault(a, @[]) & b
         nodes[b] = nodes.getOrDefault(b, @[]) & a
 
-    return visit(nodes)
+    return nodes
+
+proc part1*(lines: seq[string]): int =
+    return visit(createNodes(lines), 1)
 
 
 proc part2*(lines: seq[string]): int =
-    return 0
+    return visit(createNodes(lines), 2)
 
 when isMainModule:
     let lines = parseInput("12")

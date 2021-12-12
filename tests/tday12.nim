@@ -16,4 +16,4 @@ suite "AOC day 12":
         check part1(lines) == 10
 
     test "Part 2":
-        check part2(lines) == 0
+        check part2(lines) == 36
