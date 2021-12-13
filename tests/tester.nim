@@ -1,12 +1,2 @@
-import tday01
-import tday02
-import tday03
-import tday04
-import tday05
-import tday06
-import tday07
-import tday08
-import tday09
-import tday10
-import tday11
-import tday12
+import tday01, tday02, tday03, tday04, tday05, tday06, tday07, tday08, tday09, tday10
+import tday11, tday12, tday13
