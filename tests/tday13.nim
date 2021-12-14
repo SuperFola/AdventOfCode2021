@@ -1,6 +1,6 @@
 import day13, unittest, strutils
 
-suite "AOC day 12":
+suite "AOC day 13":
     setup:
         let lines: seq[string] = (dedent """
             6,10
