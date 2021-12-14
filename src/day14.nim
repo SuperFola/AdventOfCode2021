@@ -25,18 +25,19 @@ proc simulate(lines: seq[string], steps: int): int =
             let
                 newPair1 = pair[0] & rules[pair]
                 newPair2 = rules[pair] & pair[1]
-            newPolymer.inc(newPair1, currentPolymer[pair])
-            newPolymer.inc(newPair2, currentPolymer[pair])
+                count = currentPolymer[pair]
+            newPolymer.inc(newPair1, count)
+            newPolymer.inc(newPair2, count)
 
         currentPolymer = newPolymer
 
     var elements = initCountTable[char]()
-    for pair in currentPolymer.keys:
-        elements.inc(pair[0], currentPolymer[pair])
+    for pair, count in currentPolymer:
+        elements.inc(pair[1], count)
+    elements.inc(polymer[0])
 
     let counts = sorted(elements.values.toSeq, Descending)
-    # somehow needs -1 instead of +1 for my input, but this gives the correct values for the test sample
-    return counts[0] - counts[^1] + 1
+    return counts[0] - counts[^1]
 
 proc part1*(lines: seq[string]): int =
     return simulate(lines, 10)
