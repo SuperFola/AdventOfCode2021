@@ -16,7 +16,11 @@ bin           = @[
   "day08",
   "day09",
   "day10",
-  "day11"
+  "day11",
+  "day12",
+  "day13",
+  "day14",
+  "day15"
 ]
 
 
@@ -28,4 +32,4 @@ requires "nim >= 1.6.0"
 # Tasks
 
 task test, "Runs the test suite":
-  exec "nim c --outdir:build/ -r tests/tester.nim"
+  exec "nim c --outdir:build/ -d:release -r tests/tester.nim"
