@@ -41,8 +41,8 @@ proc dijkstraPath(graph: Graph; first, last: string): seq[tuple[dst: string, cos
                     dist[vertex2] = altdist
                     previous[vertex2] = vertex1    # To go to vertex2, go through vertex1.
 
-        if previous.len mod 100 == 0:
-            echo previous.len / graph.vertices.len * 100
+        # if previous.len mod 100 == 0:
+        #     echo previous.len / graph.vertices.len * 100
 
     var
         vertex = last
@@ -90,8 +90,8 @@ proc initGraph(grid: seq[seq[int]]): Graph =
             if y + 1 < height:
                 result.neighbours.mgetOrPut(genNodeName(x, y + 1), @[]).add((dst, cost.toFloat))
 
-    debugEcho "average neighbors per node: ", result.neighbours.values.toSeq.map(x => x.len()).foldl(a + b) / result.neighbours.len
-    debugEcho "Graph created in ", cpuTime() - time, " seconds"
+    # debugEcho "average neighbors per node: ", result.neighbours.values.toSeq.map(x => x.len()).foldl(a + b) / result.neighbours.len
+    # debugEcho "Graph created in ", cpuTime() - time, " seconds"
 
 
 # top left to bottom right
